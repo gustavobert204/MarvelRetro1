@@ -9,6 +9,13 @@ class MarvelConstants private constructor() {
         const val THUMBNAIL = "thumbnail"
     }
 
+    object BUNDLE_COMICS {
+        const val ID = "id"
+        const val TITLE = "title"
+        const val THUMBNAIL = "thumbnail"
+        const val DESCRIPTION = "description"
+    }
+
     object HTTP {
         const val SUCCESS = 200
     }

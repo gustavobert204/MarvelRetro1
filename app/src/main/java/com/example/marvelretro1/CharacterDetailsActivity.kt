@@ -43,21 +43,13 @@ class CharacterDetailsActivity : AppCompatActivity() {
                 .fallback(R.mipmap.ic_launcher)
                 .into(binding.characterDetailImage)
 
-            Log.d("GUS", bundle.getString(MarvelConstants.BUNDLE.THUMBNAIL).toString())
-
             viewModel.getCharacters(bundle.getInt(MarvelConstants.BUNDLE.ID))
             binding.characterDetailComicsRv.layoutManager =  LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
             binding.characterDetailComicsRv.adapter = CharacterComicsAdapter() {}
 
             viewModel.charactersComics.observe(this){
                 (binding.characterDetailComicsRv.adapter as CharacterComicsAdapter).submitList(it)
-
             }
-
-            //mId = bundle.getInt(MarvelConstants.BUNDLE.ID)
-
-            //mThumbnail = bundle.getString(MarvelConstants.BUNDLE.THUMBNAIL).toString()
         }
     }
-
 }
