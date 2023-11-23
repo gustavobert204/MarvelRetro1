@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/etSEmailAddress"
+            android:id="@+id/signUpEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -34,7 +34,7 @@
             android:textColorHint="#757575" />
 
         <EditText
-            android:id="@+id/etSPassword"
+            android:id="@+id/signUpPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -48,7 +48,7 @@
             android:textColorHint="#757575" />
 
         <EditText
-            android:id="@+id/etSConfPassword"
+            android:id="@+id/signUpConfPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -63,14 +63,14 @@
             tools:ignore="TextContrastCheck" />
 
         <Button
-            android:id="@+id/btnSSigned"
+            android:id="@+id/signUpSignedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:text="signed" /><!-- android:background="@drawable/btn_primary" -->
 
         <TextView
-            android:id="@+id/tvRedirectLogin"
+            android:id="@+id/signUpRedirectLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"

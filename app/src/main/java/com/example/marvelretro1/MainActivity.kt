@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity(), CharactersFragment.OnFragmentInteracti
 
         mGoogleSignInClient.signOut().addOnCompleteListener(this) {
             // Optional: Update UI or show a message to the user
-            val intent = Intent(this@MainActivity, SignInActivity::class.java)
+            val intent = Intent(this@MainActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }

@@ -1,4 +1,5 @@
 package com.example.marvelretro1.data
+import com.example.marvelretro1.constants.MarvelConstants
 import com.example.marvelretro1.data.models.charactercomics.MarvelComicResponse
 import com.example.marvelretro1.data.models.comicCharacters.MarvelComicCharactersResponse
 import com.example.marvelretro1.modeladoClase.MarvelResponse
@@ -11,17 +12,19 @@ import retrofit2.http.Query
 interface Api {
     @GET("characters")
     suspend fun fetchCharacter(
-        @Query("apikey") apiKey: String,
-        @Query("ts") ts : String,
-        @Query("hash") hash: String
+        @Query(MarvelConstants.PARAMS.API_KEY) apiKey: String,
+        @Query(MarvelConstants.PARAMS.TS) ts : String,
+        @Query(MarvelConstants.PARAMS.HASH) hash: String,
+        @Query(MarvelConstants.PARAMS.LIMIT) limit: Int = MarvelConstants.PARAMS.LIMIT_VAL
     ): Response<MarvelResponse>
 
     @GET("characters")
     suspend fun fetchCharacterNameStartsWith(
-        @Query("apikey") apiKey: String,
-        @Query("ts") ts : String,
-        @Query("hash") hash: String,
-        @Query("nameStartsWith") nameStartsWith: String
+        @Query(MarvelConstants.PARAMS.API_KEY) apiKey: String,
+        @Query(MarvelConstants.PARAMS.TS) ts : String,
+        @Query(MarvelConstants.PARAMS.HASH) hash: String,
+        @Query(MarvelConstants.PARAMS.NAME_STARTS_WITH) nameStartsWith: String,
+        @Query(MarvelConstants.PARAMS.LIMIT) limit: Int = MarvelConstants.PARAMS.LIMIT_VAL
     ): Response<MarvelResponse>
 
     @GET("characters/{characterId}/comics")
@@ -30,9 +33,9 @@ interface Api {
             value = "characterId",
             encoded = true
         ) characterId: Int,
-        @Query("apikey") apiKey: String,
-        @Query("ts") ts : String,
-        @Query("hash") hash: String
+        @Query(MarvelConstants.PARAMS.API_KEY) apiKey: String,
+        @Query(MarvelConstants.PARAMS.TS) ts : String,
+        @Query(MarvelConstants.PARAMS.HASH) hash: String
     ): Response<MarvelComicResponse>
 
     @GET("comics/{comicId}/characters")
@@ -41,8 +44,8 @@ interface Api {
             value = "comicId",
             encoded = true
         ) characterId: Int,
-        @Query("apikey") apiKey: String,
-        @Query("ts") ts : String,
-        @Query("hash") hash: String
+        @Query(MarvelConstants.PARAMS.API_KEY) apiKey: String,
+        @Query(MarvelConstants.PARAMS.TS) ts : String,
+        @Query(MarvelConstants.PARAMS.HASH) hash: String
     ): Response<MarvelComicCharactersResponse>
 }

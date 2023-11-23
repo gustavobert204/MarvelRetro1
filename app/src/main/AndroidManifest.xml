@@ -33,9 +33,6 @@
             android:name=".ComicDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".SignInActivity"
-            android:exported="false" />
-        <activity
             android:name=".CharacterDetailsActivity"
             android:exported="false" />
         <activity

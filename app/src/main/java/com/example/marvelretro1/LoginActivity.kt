@@ -9,9 +9,17 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.marvelretro1.databinding.ActivityLoginBinding
 import com.example.marvelretro1.databinding.ActivityMainBinding
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 
 class LoginActivity : AppCompatActivity() {
+
+    companion object {
+        private const val RC_SIGN_IN = 9001
+    }
 
     private lateinit var binding: ActivityLoginBinding
 
@@ -23,15 +31,16 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // View Binding
-        /*
-        tvRedirectSignUp = findViewById(R.id.tvRedirectSignUp)
-        btnLogin = findViewById(R.id.btnLogin)
-        etEmail = findViewById(R.id.etEmailAddress)
-        etPass = findViewById(R.id.etPassword)*/
-
-        // initialising Firebase auth object
+        // Initialising Firebase auth object
         auth = FirebaseAuth.getInstance()
+
+        val currentUser = auth.currentUser
+
+        if (currentUser != null) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         binding.loginButton.setOnClickListener {
             login()
@@ -40,8 +49,11 @@ class LoginActivity : AppCompatActivity() {
         binding.loginRedirectSignUp.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
-            // using finish() to end the activity
             finish()
+        }
+
+        binding.signInButton.setOnClickListener {
+            signIn()
         }
     }
 
@@ -56,8 +68,49 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Successfully LoggedIn", Toast.LENGTH_SHORT).show()
                 val intent = Intent(binding.root.context, MainActivity::class.java)
                 startActivity(intent)
+                finish()
             } else
                 Toast.makeText(this, "Log In failed ", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun signIn() {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        val googleSignInClient = GoogleSignIn.getClient(this, gso)
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, LoginActivity.RC_SIGN_IN)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == LoginActivity.RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                firebaseAuthWithGoogle(account.idToken!!)
+            } catch (e: ApiException) {
+                Toast.makeText(this, "Google sign in failed: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    val user = auth.currentUser
+                    Toast.makeText(this, "Signed in as ${user?.displayName}", Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(binding.root.context, MainActivity::class.java))
+                    finish()
+                } else {
+                    Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 }
