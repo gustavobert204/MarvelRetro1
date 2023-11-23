@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), CharactersFragment.OnFragmentInteracti
 
         if (user == null) {
             // Handle the case where the user is not signed in
-            signOutAndStartSignInActivity()
+            //signOutAndStartSignInActivity()
         }
 
         // Inside onCreate() method
