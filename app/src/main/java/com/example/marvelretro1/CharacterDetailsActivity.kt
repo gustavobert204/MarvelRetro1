@@ -23,7 +23,6 @@ class CharacterDetailsActivity : AppCompatActivity() {
 
     private val viewModel by viewModel<CharacterComicsViewModel>()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCharacterDetailsBinding.inflate(layoutInflater)

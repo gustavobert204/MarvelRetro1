@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity(), CharactersFragment.OnFragmentInteracti
     private lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var mAuth: FirebaseAuth
 
-    //Titties
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

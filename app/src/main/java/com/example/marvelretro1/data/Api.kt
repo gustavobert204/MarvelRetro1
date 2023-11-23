@@ -1,5 +1,6 @@
 package com.example.marvelretro1.data
 import com.example.marvelretro1.data.models.charactercomics.MarvelComicResponse
+import com.example.marvelretro1.data.models.comicCharacters.MarvelComicCharactersResponse
 import com.example.marvelretro1.modeladoClase.MarvelResponse
 import retrofit2.Call
 import retrofit2.Response
@@ -33,4 +34,15 @@ interface Api {
         @Query("ts") ts : String,
         @Query("hash") hash: String
     ): Response<MarvelComicResponse>
+
+    @GET("comics/{comicId}/characters")
+    suspend fun fetchComicCharacters(
+        @Path(
+            value = "comicId",
+            encoded = true
+        ) characterId: Int,
+        @Query("apikey") apiKey: String,
+        @Query("ts") ts : String,
+        @Query("hash") hash: String
+    ): Response<MarvelComicCharactersResponse>
 }

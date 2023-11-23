@@ -3,10 +3,13 @@ package com.example.marvelretro1.di
 import com.example.marvelretro1.data.Api
 import com.example.marvelretro1.data.repositories.CharacterComicsRepository
 import com.example.marvelretro1.data.repositories.CharacterRepository
+import com.example.marvelretro1.data.repositories.ComicCharactersRepository
 import com.example.marvelretro1.data.repositories.ICharacterComicsRepository
 import com.example.marvelretro1.data.repositories.ICharacterRepository
+import com.example.marvelretro1.data.repositories.IComicCharactersRepository
 import com.example.marvelretro1.ui.CharacterComicsViewModel
 import com.example.marvelretro1.ui.CharactersViewModel
+import com.example.marvelretro1.ui.ComicCharactersViewModel
 import okhttp3.OkHttpClient
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
@@ -21,11 +24,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 val repositoriesModule = module {
     singleOf(::CharacterRepository) { bind<ICharacterRepository>() }
     singleOf(::CharacterComicsRepository) { bind<ICharacterComicsRepository>() }
+    singleOf(::ComicCharactersRepository) { bind<IComicCharactersRepository>() }
 }
 
 val viewModelsModule = module {
     viewModelOf(::CharactersViewModel)
     viewModel { CharacterComicsViewModel(get()) }
+    viewModel { ComicCharactersViewModel(get()) }
 }
 
 val networkModule = module {
