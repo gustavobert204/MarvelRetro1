@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "969401608784",
+    "project_id": "marvelretro1",
+    "storage_bucket": "marvelretro1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:969401608784:android:4dfaa9bbf05bf124a17f55",
+        "android_client_info": {
+          "package_name": "com.example.marvelretro1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "969401608784-hhvs3j810cofneer66sg0pegu1obch4u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.marvelretro1",
+            "certificate_hash": "d15ac5d96ba85fd7f0ff7b8f73d0fae051598e74"
+          }
+        },
+        {
+          "client_id": "969401608784-bi51l1h8iaviqfn71kb6efk1h4qu8d4o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWRGF2_2srR2BFle7vHYxGiCw8d2TGgwo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "969401608784-bi51l1h8iaviqfn71kb6efk1h4qu8d4o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
