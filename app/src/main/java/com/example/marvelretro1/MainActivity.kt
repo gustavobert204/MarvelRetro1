@@ -3,6 +3,7 @@ package com.example.marvelretro1
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -44,12 +45,6 @@ class MainActivity : AppCompatActivity(), CharactersFragment.OnFragmentInteracti
             signOutAndStartSignInActivity()
         }
 
-        // Inside onCreate() method
-        /*val sign_out_button = findViewById<Button>(R.id.logout_button)
-        sign_out_button.setOnClickListener {
-            signOutAndStartSignInActivity()
-        }*/
-
         /* --- Login verification --- */
 
         if (savedInstanceState == null) {
@@ -81,10 +76,10 @@ class MainActivity : AppCompatActivity(), CharactersFragment.OnFragmentInteracti
         mAuth.signOut()
 
         mGoogleSignInClient.signOut().addOnCompleteListener(this) {
-            // Optional: Update UI or show a message to the user
+            Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
-            //finish()
+            finish()
         }
     }
 

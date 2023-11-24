@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">MarvelRetro1</string>
     <string name="default_web_client_id">marvelretro1</string>
+    <string name="dont_have_an_account_sign_in">Dont have an account? Sign in!</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="confirm">Confirm</string>
+    <string name="create_acc_banner">Create an account and join the incredible Marvel Universe!</string>
 </resources>
