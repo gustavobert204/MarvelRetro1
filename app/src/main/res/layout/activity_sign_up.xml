@@ -80,7 +80,7 @@
 
     <TextView
         android:id="@+id/signUpRedirectLogin"
-        style="@style/importantName"
+        style="@style/CardName"
 
         android:layout_width="104dp"
         android:layout_height="36dp"

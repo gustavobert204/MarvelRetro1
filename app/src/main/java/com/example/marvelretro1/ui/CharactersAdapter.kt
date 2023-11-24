@@ -5,6 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.marvelretro1.R
 import com.example.marvelretro1.databinding.CharactersListItemBinding
 import com.example.marvelretro1.modeladoClase.Result
 
@@ -14,6 +16,15 @@ class CharactersAdapter(private val onItemClickListener: (Result) -> Unit) : Lis
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Result) {
             binding.name.text = item.name
+
+            val thumbnailUrl = item.thumbnail.path + "." + item.thumbnail.extension
+            Glide.with(binding.root.context)
+                .load(thumbnailUrl)
+                .fitCenter()
+                .placeholder(R.mipmap.ic_launcher)
+                .error(R.mipmap.ic_launcher)
+                .fallback(R.mipmap.ic_launcher)
+                .into(binding.avatar)
 
             binding.root.setOnClickListener {
                 onItemClickListener(item)

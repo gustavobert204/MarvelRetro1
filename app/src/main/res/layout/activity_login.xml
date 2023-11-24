@@ -38,7 +38,7 @@
 
     <TextView
         android:id="@+id/loginRedirectSignUp"
-        style="@style/importantName"
+        style="@style/CardName"
         android:layout_width="348dp"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"

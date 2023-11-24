@@ -69,6 +69,5 @@ class CharactersViewModel(private val characterRepository: CharacterRepository) 
             getCharacters()
         }
         return characters.value ?: emptyList()
-        //return characters.value?.filter { it.name.contains(newText, ignoreCase = true) } ?: emptyList()
     }
 }

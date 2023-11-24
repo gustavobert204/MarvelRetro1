@@ -1,6 +1,7 @@
 package com.example.marvelretro1.ui
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -9,9 +10,18 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import com.example.marvelretro1.LoginActivity
+import com.example.marvelretro1.MainActivity
+import com.example.marvelretro1.R
 import com.example.marvelretro1.databinding.FragmentCharactersBinding
 import com.example.marvelretro1.modeladoClase.Result
 import com.example.marvelretro1.utils.AlertUtils
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CharactersFragment : Fragment() {
@@ -25,6 +35,7 @@ class CharactersFragment : Fragment() {
     private val viewModel by viewModel<CharactersViewModel>()
 
     private var listener: OnFragmentInteractionListener? = null
+    private var logOutListener: LogOutInteractionListener? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +47,10 @@ class CharactersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.imageButton.setOnClickListener{
+            logOutListener?.signOutAndStartSignInActivity()
+        }
 
         setupSearchView()
         setupList()
@@ -75,15 +90,11 @@ class CharactersFragment : Fragment() {
                     submitToList(viewModel.filterCharacters(newText ?: ""))
                 } else {
                     handler.postDelayed({
-                        submitToList(viewModel.filterCharacters(newText ?: ""))
+                        submitToList(viewModel.filterCharacters(newText))
                     }, 1000)
                 }
-
                 return false
             }
-
-
-
         })
     }
 
@@ -100,6 +111,11 @@ class CharactersFragment : Fragment() {
         } else {
             throw NotImplementedError("$context Must implement interface ArmorsFragment.OnFragmentInteractionListener")
         }
+        if(context is LogOutInteractionListener) {
+            logOutListener = context
+        } else {
+            throw NotImplementedError("$context Must implement interface ArmorsFragment.OnFragmentInteractionListener")
+        }
     }
 
     override fun onDetach() {
@@ -109,6 +125,10 @@ class CharactersFragment : Fragment() {
 
     interface OnFragmentInteractionListener {
         fun showArmorDetails(character: Result)
+    }
+
+    interface LogOutInteractionListener {
+        fun signOutAndStartSignInActivity()
     }
 
 }

@@ -2,33 +2,43 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="200dp"
-    android:layout_height="wrap_content"
-    android:background="@color/marvelRed"
+    android:layout_width="150dp"
+    android:layout_height="250dp"
+    android:layout_margin="8dp">
 
-    >
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/comicName"
-        style="@style/importantName"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:text="ComicName"
-        app:layout_constraintBottom_toTopOf="@+id/comicPoster"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/marvelRed"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/comicPoster"
-        android:layout_width="wrap_content"
-        android:layout_height="250dp"
-        android:adjustViewBounds="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/comicName"
-        app:layout_constraintEnd_toEndOf="@+id/comicName"
-        app:layout_constraintStart_toStartOf="@+id/comicName"
-        tools:srcCompat="@tools:sample/avatars" />
+            <ImageView
+                android:id="@+id/comicPoster"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/comicName"
+                style="@style/CardName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="#80000000"
+                android:text="Comic Name" />
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

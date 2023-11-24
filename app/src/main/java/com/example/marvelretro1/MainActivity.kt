@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class MainActivity : AppCompatActivity(), CharactersFragment.OnFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), CharactersFragment.OnFragmentInteractionListener, CharactersFragment.LogOutInteractionListener {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -41,8 +41,7 @@ class MainActivity : AppCompatActivity(), CharactersFragment.OnFragmentInteracti
         val user = auth.currentUser
 
         if (user == null) {
-            // Handle the case where the user is not signed in
-            //signOutAndStartSignInActivity()
+            signOutAndStartSignInActivity()
         }
 
         // Inside onCreate() method
@@ -64,7 +63,6 @@ class MainActivity : AppCompatActivity(), CharactersFragment.OnFragmentInteracti
     }
 
     override fun showArmorDetails(character: Result) {
-
         val intent = Intent(applicationContext, CharacterDetailsActivity::class.java)
         val bundle = Bundle()
         bundle.putString(MarvelConstants.BUNDLE.DESCRIPTION, character.description)
@@ -77,20 +75,17 @@ class MainActivity : AppCompatActivity(), CharactersFragment.OnFragmentInteracti
         intent.putExtras(bundle)
 
         startActivity(intent)
-        /*
-        ArmorDetailsBottomSheet.newInstance(armor).show(
-            supportFragmentManager, ArmorDetailsBottomSheet.TAG
-        )*/
     }
 
-    fun signOutAndStartSignInActivity() {
+    override fun signOutAndStartSignInActivity() {
         mAuth.signOut()
 
         mGoogleSignInClient.signOut().addOnCompleteListener(this) {
             // Optional: Update UI or show a message to the user
-            val intent = Intent(this@MainActivity, LoginActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
-            finish()
+            //finish()
         }
     }
+
 }
