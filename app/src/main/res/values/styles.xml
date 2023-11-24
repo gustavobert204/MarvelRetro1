@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MarvelBase" parent="Theme.AppCompat.Light">
+        <item name="android:windowBackground">@color/marvelRed</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="importantName" parent="Theme.AppCompat.Light">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">#FFFFFF</item>
+
+        <item name="android:textSize">20sp</item>
+
+
+
+    </style>
+
+
+</resources>

@@ -2,15 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:background="@color/marvelRed"
+    style="@style/MarvelBase"
+    >
 
     <TextView
         android:id="@+id/comicCharacterName"
+        style="@style/importantName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
+        android:text="Character Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,11 +21,10 @@
 
     <ImageView
         android:id="@+id/comicCharacterPoster"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
         app:layout_constraintEnd_toEndOf="@+id/comicCharacterName"
-        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="@+id/comicCharacterName"
         app:layout_constraintTop_toBottomOf="@+id/comicCharacterName"
         tools:srcCompat="@tools:sample/avatars" />
