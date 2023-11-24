@@ -21,6 +21,10 @@ class ComicDetailsActivity : AppCompatActivity() {
         binding = ActivityComicDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.comicDetailBack.setOnClickListener {
+            onBackPressed()
+        }
+
         val bundle = intent.extras
         if (bundle != null) {
             binding.comicDetailTitle.text = bundle.getString(MarvelConstants.BUNDLE_COMICS.TITLE).toString()
@@ -29,7 +33,6 @@ class ComicDetailsActivity : AppCompatActivity() {
 
             Glide.with(binding.root.context)
                 .load(bundle.getString(MarvelConstants.BUNDLE_COMICS.THUMBNAIL))
-                .centerCrop()
                 .placeholder(R.mipmap.ic_launcher)
                 .error(R.mipmap.ic_launcher)
                 .fallback(R.mipmap.ic_launcher)

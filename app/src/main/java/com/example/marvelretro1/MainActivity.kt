@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -73,14 +74,34 @@ class MainActivity : AppCompatActivity(), CharactersFragment.OnFragmentInteracti
     }
 
     override fun signOutAndStartSignInActivity() {
-        mAuth.signOut()
 
-        mGoogleSignInClient.signOut().addOnCompleteListener(this) {
-            Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Logout Alert")
+        builder.setMessage("Do you want to close session?")
+
+        builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+            Toast.makeText(applicationContext,
+                android.R.string.yes, Toast.LENGTH_SHORT).show()
+            mAuth.signOut()
+
+            mGoogleSignInClient.signOut().addOnCompleteListener(this) {
+                Toast.makeText(this, "Logout", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
+
+        builder.setNegativeButton(android.R.string.no) { dialog, which ->
+            Toast.makeText(applicationContext,
+                android.R.string.no, Toast.LENGTH_SHORT).show()
+        }
+
+        builder.show()
+
+
+
+
     }
 
 }

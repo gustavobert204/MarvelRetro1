@@ -8,4 +8,7 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="confirm">Confirm</string>
     <string name="create_acc_banner">Create an account and join the incredible Marvel Universe!</string>
+    <string name="description_heroe">Description Heroe</string>
+    <string name="name_heroe">Name Heroe</string>
+    <string name="characters_appereances">Characters appereances:</string>
 </resources>

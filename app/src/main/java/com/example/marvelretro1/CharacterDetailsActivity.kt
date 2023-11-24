@@ -28,6 +28,10 @@ class CharacterDetailsActivity : AppCompatActivity() {
         binding = ActivityCharacterDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.characterDetailBack.setOnClickListener {
+            onBackPressed()
+        }
+
         val bundle = intent.extras
         if (bundle != null) {
             binding.characterDetailName.text = bundle.getString(MarvelConstants.BUNDLE.NAME).toString()

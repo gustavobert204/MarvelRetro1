@@ -10,28 +10,56 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/comicDetailPoster"
-            android:layout_width="350dp"
+        <RelativeLayout
+            android:id="@+id/comic_detail_background"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scaleType="fitXY"
-            android:adjustViewBounds="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/comicDetailPoster"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                tools:src="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/comic_detail_back"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignTop="@+id/comicDetailPoster"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/baseline_arrow_back_24"
+                app:tint="@color/white" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/comicDetailTitle"
+            style="@style/DetailWhiteBig"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comic Title"
+            app:layout_constraintBottom_toTopOf="@+id/comicDetailDescription"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/comic_detail_background" />
 
         <TextView
             android:id="@+id/comicDetailDescription"
-            android:layout_width="100dp"
-            android:layout_height="17dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
             android:text="Comic Details"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/comicDetailCharactersShow"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/comicDetailTitle" />
 
@@ -39,30 +67,20 @@
             android:id="@+id/comicDetailCharactersShow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Characters appereances:"
+            android:layout_marginLeft="8dp"
+            android:text="@string/characters_appereances"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/comicDetailCharactersRV"
-            app:layout_constraintEnd_toEndOf="parent"
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/comicDetailDescription" />
 
-        <TextView
-            android:id="@+id/comicDetailTitle"
-            style="@style/CardName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Comic Title"
-            app:layout_constraintBottom_toTopOf="@+id/comicDetailDescription"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/comicDetailPoster" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/comicDetailCharactersRV"
             android:layout_width="match_parent"
             android:layout_height="300dp"
+            android:layout_margin="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
