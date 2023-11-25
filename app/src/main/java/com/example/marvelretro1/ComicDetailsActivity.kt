@@ -2,6 +2,7 @@ package com.example.marvelretro1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.marvelretro1.constants.MarvelConstants
@@ -28,8 +29,8 @@ class ComicDetailsActivity : AppCompatActivity() {
         val bundle = intent.extras
         if (bundle != null) {
             binding.comicDetailTitle.text = bundle.getString(MarvelConstants.BUNDLE_COMICS.TITLE).toString()
-            val description = bundle.getString(MarvelConstants.BUNDLE_COMICS.DESCRIPTION).toString()
-            binding.comicDetailDescription.text = if (description.isNotEmpty()) description else "No description provided"
+            var description = bundle.getString(MarvelConstants.BUNDLE_COMICS.DESCRIPTION).toString()
+            binding.comicDetailDescription.text = if (description.isNullOrEmpty()) "No description provided" else description
 
             Glide.with(binding.root.context)
                 .load(bundle.getString(MarvelConstants.BUNDLE_COMICS.THUMBNAIL))

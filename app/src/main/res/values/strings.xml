@@ -11,4 +11,6 @@
     <string name="description_heroe">Description Heroe</string>
     <string name="name_heroe">Name Heroe</string>
     <string name="characters_appereances">Characters appereances:</string>
+    <string name="comic_name">Comic Name</string>
+    <string name="character_name">Character Name</string>
 </resources>

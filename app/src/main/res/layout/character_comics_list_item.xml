@@ -27,13 +27,15 @@
 
             <TextView
                 android:id="@+id/comicName"
-                style="@style/CardName"
-                android:layout_width="wrap_content"
+                style="@style/DetailWhiteNormal"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="8dp"
                 android:background="#80000000"
-                android:text="Comic Name" />
+                android:text="@string/comic_name"
+                android:textAlignment="center" />
 
 
         </RelativeLayout>

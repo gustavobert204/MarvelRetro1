@@ -23,9 +23,10 @@
             android:scaleType="centerCrop"
             tools:src="@tools:sample/avatars" />
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/name"
@@ -34,15 +35,34 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginRight="8dp"
                 android:text="HEROE NAME (HEROE VERSION)"
                 android:textAlignment="viewStart"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/description"
+                style="@style/CardName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/name"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="8dp"
+                android:textSize="12sp"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:text="Description large. Description large. Description large. Description large. Description large. "
+                android:textAlignment="viewStart"
+                app:layout_constraintTop_toBottomOf="@+id/name"/>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true">
+                app:layout_constraintBottom_toBottomOf="parent">
 
                 <TextView
                     android:id="@+id/go_to_Character"
@@ -64,7 +84,7 @@
             </RelativeLayout>
 
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     </LinearLayout>

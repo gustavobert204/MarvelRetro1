@@ -16,6 +16,7 @@ class CharactersAdapter(private val onItemClickListener: (Result) -> Unit) : Lis
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Result) {
             binding.name.text = item.name
+            binding.description.text = if (item.description.isNotEmpty()) item.description else "No description provided"
 
             val thumbnailUrl = item.thumbnail.path + "." + item.thumbnail.extension
             Glide.with(binding.root.context)
