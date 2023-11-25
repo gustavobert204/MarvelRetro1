@@ -28,26 +28,6 @@ class MainActivity : AppCompatActivity(), CharactersFragment.OnFragmentInteracti
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        /* --- Login verification --- */
-        mAuth = FirebaseAuth.getInstance()
-
-        //default_web_client_id = marvelretro1
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
-            .requestEmail()
-            .build()
-
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
-
-        val auth = Firebase.auth
-        val user = auth.currentUser
-
-        if (user == null) {
-            signOutAndStartSignInActivity()
-        }
-
-        /* --- Login verification --- */
-
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction().apply {
                 add(binding.fragmentContainer.id, CharactersFragment())
@@ -80,8 +60,16 @@ class MainActivity : AppCompatActivity(), CharactersFragment.OnFragmentInteracti
         builder.setMessage("Do you want to close session?")
 
         builder.setPositiveButton(android.R.string.yes) { dialog, which ->
-            Toast.makeText(applicationContext,
-                android.R.string.yes, Toast.LENGTH_SHORT).show()
+            mAuth = FirebaseAuth.getInstance()
+
+            //default_web_client_id = marvelretro1
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+
+            mGoogleSignInClient = GoogleSignIn.getClient(binding.root.context, gso)
+
             mAuth.signOut()
 
             mGoogleSignInClient.signOut().addOnCompleteListener(this) {
@@ -93,14 +81,9 @@ class MainActivity : AppCompatActivity(), CharactersFragment.OnFragmentInteracti
         }
 
         builder.setNegativeButton(android.R.string.no) { dialog, which ->
-            Toast.makeText(applicationContext,
-                android.R.string.no, Toast.LENGTH_SHORT).show()
         }
 
         builder.show()
-
-
-
 
     }
 
